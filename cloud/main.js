@@ -4,6 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 
 //Push Notification new assignments
 Parse.Cloud.afterSave("Assignment", function(request) {
+    console.log('Parse.serverURL: ' + Parse.serverURL);
     var title = request.object.get('title');
     var description = request.object.get('description');
     // var assignmentId = request.object.get('objectId');
@@ -18,6 +19,7 @@ Parse.Cloud.afterSave("Assignment", function(request) {
         }
     }, {
         success: function() {
+            console.log("Push notification was sent successfully");
             // Push was successful
         },
         error: function(error) {
