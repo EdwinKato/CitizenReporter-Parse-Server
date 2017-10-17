@@ -29,7 +29,12 @@ Parse.Cloud.afterSave("Assignment", function(request) {
         error: function(error) {
             throw "Got an error " + error.code + " : " + error.message;
         }
-    });
+    }).then(() => {
+      // Push was successful
+      console.log("Push notification was sent successfully");
+  }, (e) => {
+      console.log(e);
+  });
 });
 
 /*
